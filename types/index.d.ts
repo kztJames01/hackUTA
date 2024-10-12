@@ -40,3 +40,7 @@ declare type NewUserParams = {
     name: string;
     password: string;
 };
+
+declare interface getUserInfoProps {
+    userId: string;
+}
