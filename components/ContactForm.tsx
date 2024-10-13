@@ -8,15 +8,15 @@ import {
     FormMessage,
     FormControl,
 
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+} from "../components/ui/form"
+import { Input } from "../components/ui/input"
+import { Button } from "../components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Loader2 } from 'lucide-react'
 import { useState } from 'react'
-import { contact } from '@/lib/utils'
+import { contact } from '../lib/utils'
 const ContactForm = () => {
     const [loading, setLoading] = useState(false);
     const schema = contact;

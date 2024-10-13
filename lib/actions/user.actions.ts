@@ -4,7 +4,7 @@ import { parseStringify } from "../utils";
 
 import { serialize } from "cookie";
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/firebase";
+import { auth } from "../firebase";
 import {  createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 export const signUp = async ({password, ...userData}: SignUpParams) => {
     try{

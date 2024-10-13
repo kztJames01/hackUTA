@@ -1,3 +1,4 @@
+import React from 'react'
 import TinderCard from 'react-tinder-card'
 
 const people = [

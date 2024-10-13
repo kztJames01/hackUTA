@@ -47,10 +47,11 @@
 }
 
 @layer utilities {
-  .contact-form{
-    @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500 w-full p-3 ;
-    margin: 0 auto;
-  }
+    .contact-form {
+        @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500 w-full p-3;
+        margin: 0 auto;
+    }
+
     .input-class {
         @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
     }
@@ -125,13 +126,13 @@
     }
 
 
-    
+
 
     .view-all-btn {
         @apply text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700;
     }
 
-    
+
 
     /* Right sidebar */
     .right-sidebar {
@@ -162,12 +163,10 @@
         @apply text-16 font-normal text-gray-600;
     }
 
-    
-    .nav-button{
-      @apply text-white p-6 mr-6 my-4 rounded-xl text-xl bg-gray-700;
-    }
-   
 
+    .nav-button {
+        @apply text-white p-6 mr-6 my-4 rounded-xl text-xl bg-gray-700;
+    }
     .header-box {
         @apply flex flex-col gap-1;
     }
@@ -180,9 +179,9 @@
         @apply text-14 lg:text-16 font-normal text-gray-600;
     }
 
-   
 
-    
+
+
 
     /* Category Badge */
     .category-badge {
@@ -198,10 +197,11 @@
     .mobilenav-sheet_close {
         @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
     }
-    .mobilenav-sheet_label{
+
+    .mobilenav-sheet_label {
         @apply flex text-16 font-semibold text-gray-900;
     }
-    
+
 
     /* Auth */
     .auth-asset {
@@ -233,9 +233,9 @@
         @apply text-14 cursor-pointer font-medium text-bankGradient;
     }
 
-    
 
-    
+
+
 
     /* Root Layout */
     .root-layout {
@@ -281,6 +281,6 @@
     }
 
     .sidebar-label {
-        @apply text-16  font-semibold text-black-2 max-xl:hidden;
+        @apply text-16 font-semibold text-black-2 max-xl:hidden;
     }
 }

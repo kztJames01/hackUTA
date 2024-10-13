@@ -5,17 +5,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import CustomInput from '@/components/CustomInput'
+import CustomInput from '../components/CustomInput'
 import { z } from "zod"
-import { Button } from "@/components/ui/button"
+import { Button } from "../components/ui/button"
 import {
     Form,
 
-} from "@/components/ui/form"
+} from "../components/ui/form"
 
-import { authFormSchema } from '@/lib/utils'
+import { authFormSchema } from '../lib/utils'
 import { Loader2 } from 'lucide-react'
-import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
+import { getLoggedInUser, signIn, signUp } from '../lib/actions/user.actions'
 import { useRouter } from 'next/navigation'
 
 const AuthForm = ({ type }: { type: string }) => {
