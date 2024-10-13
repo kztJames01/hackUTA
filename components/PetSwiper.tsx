@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
 import { motion } from 'framer-motion'
@@ -7,6 +9,8 @@ const swipedRight = []
 const PetSwiper = () => {
   const [pets, setPets] = React.useState<{ [key: string]: string }[]>()
   const [currentIndex, setCurrentIndex] = React.useState(0)
+  const [isGettingPersonalized, setIsGettingPersonalized] =
+    React.useState(false)
 
   useEffect(() => {
     const fetchData = () => {
@@ -27,6 +31,7 @@ const PetSwiper = () => {
 
   useEffect(() => {
     if (pets && currentIndex >= pets.length) {
+      setIsGettingPersonalized(true)
       fetch('http://localhost:5000/update_recommendations', {
         method: 'POST',
         headers: {
@@ -39,9 +44,11 @@ const PetSwiper = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setPets(data)
-          console.log(data)
-          setCurrentIndex(0)
+          setTimeout(() => {
+            setPets(data)
+            setCurrentIndex(0)
+            setIsGettingPersonalized(false)
+          }, 1000)
         })
         .catch((error) => {
           console.error('Error fetching data:', error)
@@ -67,7 +74,7 @@ const PetSwiper = () => {
             }}
           >
             <motion.div
-              className="w-[58vh] h-[90vh] bg-cover bg-center rounded-[20px]"
+              className="shadow-black-1 shadow-lg w-[58vh] h-[90vh] bg-cover bg-center rounded-[20px]"
               style={{
                 backgroundImage: `url(${pets[currentIndex]['URL Link']})`,
               }}
@@ -98,6 +105,11 @@ const PetSwiper = () => {
           </TinderCard>
         ) : (
           <div className="flex justify-center items-center h-screen">
+            {isGettingPersonalized ? (
+              <div>Getting Personalized Pet Recommendations</div>
+            ) : (
+              ''
+            )}
             <BeatLoader color="#00FF00" />
           </div>
         )}

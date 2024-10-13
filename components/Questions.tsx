@@ -21,7 +21,7 @@ const welcomeMessage = [
     type: 'mcq',
     data: {
       question:
-        'Thanks for your cooperation. Are you ready to find your next pet?',
+        'Thanks for your cooperation. In order to better know your preferences, the following 10 sample pets would be shown. Swipe right if you like the pet, swipe left if you do not. Ready to start?',
       options: ["Yes. Let's start swiping"],
     },
   },
@@ -78,7 +78,7 @@ const Questions = () => {
             duration: ANIMATION_DURATION,
             delay: currentIndex === index ? ANIMATION_DURATION : 0,
           }}
-          className={`absolute text-center container text-16 font-normal text-gray-600 ${
+          className={`absolute text-center max-w-lg text-16 font-normal text-gray-600 ${
             currentIndex === index ? '' : 'pointer-events-none'
           }`}
         >
