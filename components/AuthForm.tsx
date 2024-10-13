@@ -5,17 +5,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import CustomInput from '../components/CustomInput'
+import CustomInput from '@/components/CustomInput'
 import { z } from "zod"
-import { Button } from "../components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
     Form,
 
-} from "../components/ui/form"
+} from "@/components/ui/form"
 
-import { authFormSchema } from '../lib/utils'
+import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
-import { getLoggedInUser, signIn, signUp } from '../lib/actions/user.actions'
+import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 import { useRouter } from 'next/navigation'
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -74,7 +74,7 @@ const AuthForm = ({ type }: { type: string }) => {
             <header className='flex flex-col gap-5 md:gap-8'>
                 <Link href='/' className='flex mb-12  cursor-pointer items-center gap-2'>
                     <Image src="/icons/logo.svg" width={34} height={34} alt="NxtGen logo" className="size=[24px] max-xl:size-14" />
-                    <h1 className=' font-bold text-26 font-robo text-gray-900 px-4 '>Adopt Me</h1>
+                    <h1 className=' font-bold text-26 font-robo text-gray-900 px-4 '>Furever Home</h1>
                 </Link>
                 <div className='flex flex-col gap-1 md:gap-3 '>
                     <h1 className='text-24 lg:text-36 font-semibold text-gray-700'>

@@ -20,8 +20,8 @@ const dancing = Dancing_Script({
   variable: '--font-dancing',
 })
 export const metadata: Metadata = {
-  title: "Adopt Me",
-  description: "NxtGen is a simple, easy-to-use modernized banking platform for small businesses.",
+  title: "Furever Home",
+  description: "Furever Home is a platform where you can adopt pets",
   icons: {
     icon: '/icons/logo.svg'
   }

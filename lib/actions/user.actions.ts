@@ -100,21 +100,20 @@ export const logoutAccount = async () => {
 // };
 
 export const getLoggedInUser = async (cookieHeader: string | null) => {
-    try {
-        const sessionId = getSessionIdFromCookies(cookieHeader);
+  const sessionId = getSessionIdFromCookies(cookieHeader);
 
-        if (!sessionId) {
-            return null; // If there's no session, return null
-        }
+  if (!sessionId) {
+    return null;
+  }
 
-        const { db } = await connectToDatabase();
-        const user = await db.collection('user').findOne({ userId:  sessionId});
+  try {
+    const { db } = await connectToDatabase();
+    const foundUser = await db.collection('user').findOne({ userId: sessionId });
 
-        return user ? parseStringify(user) : null; // Return user data or null if not found
-    } catch (error) {
-        console.error('Error fetching logged-in user:', error);
-        return null; // Handle errors gracefully
-    }
+    return parseStringify(foundUser);
+  } catch (error) {
+    return null;
+  }
 };
 
 

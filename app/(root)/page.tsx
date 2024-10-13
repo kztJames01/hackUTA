@@ -18,7 +18,7 @@ const Home = () => {
                     <Navbar />
                     <header className="flex justify-center items-center relative min-h-screen w-full bg-green-100">
                         <div className='text-center'>
-                            <h1 className='text-6xl font-bold text-green-700 mb-6 font-dancing'>Adopt Me</h1>
+                            <h1 className='text-6xl font-bold text-green-700 mb-6 font-dancing'>Furever Home</h1>
                             <p className='text-xl text-green-600 mb-8'>Find your perfect furry companion today!</p>
                             <Button className='bg-brown-500 hover:bg-green-900 py-3 px-6 text-white rounded-xl'>
                                 View Available Pets
@@ -100,11 +100,15 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='mt-8 text-center'>
-                                <p>© {new Date().getFullYear()} Adopt Me. All rights reserved.</p>
+                                <p>© {new Date().getFullYear()} Furever Home. All rights reserved.</p>
                             </div>
                         </div>
                     </footer>
+
+
+
                 </div>
+
             </PageWrapper>
         </>
 
@@ -115,3 +119,4 @@ const Home = () => {
 }
 
 export default Home
+
