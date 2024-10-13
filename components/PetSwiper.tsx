@@ -2,13 +2,19 @@
 
 import React, { useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { BsChatRightDots } from 'react-icons/bs'
 import { BeatLoader } from 'react-spinners'
+import Link from 'next/link'
+import { IoMdClose } from 'react-icons/io'
+import ReactIframe from 'react-iframe'
+import Image from 'next/image'
 
 const swipedRight: { [key: string]: string }[] = []
 const PetSwiper = () => {
   const [pets, setPets] = React.useState<{ [key: string]: string }[]>()
   const [currentIndex, setCurrentIndex] = React.useState(0)
+  const [openChat, setOpenChat] = React.useState(false)
   const [isGettingPersonalized, setIsGettingPersonalized] =
     React.useState(false)
 
@@ -60,7 +66,61 @@ const PetSwiper = () => {
 
   return (
     <div className="w-screen overflow-hidden relative h-screen">
-      <div className="select-none w-full flex flex-col items-center pt-5">
+      {openChat && (
+        <ReactIframe
+          url="http://localhost:8501/"
+          width="100%"
+          height="100%"
+          id="myId"
+          className="absolute z-50"
+          display="initial"
+          position="absolute"
+        />
+      )}
+      <div
+        onClick={() => {
+          setOpenChat((prev) => !prev)
+        }}
+        className="cursor-pointer absolute z-50 right-10 bottom-10 w-[80px] h-[80px] bg-red-500 rounded-full flex items-center justify-center"
+      >
+        <AnimatePresence>
+          {openChat ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <IoMdClose className="w-[52px] h-[52px] fill-white" />
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <BsChatRightDots className="w-[38px] h-[38px] fill-white" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      <Link
+        href="/"
+        className="flex mb-12  cursor-pointer items-center gap-2 absolute left-5 top-5"
+      >
+        <Image
+          src="/icons/logo.svg"
+          width={34}
+          height={34}
+          alt="NxtGen logo"
+          className="size=[24px] max-xl:size-14"
+        />
+        <h1 className=" font-bold text-26 font-robo text-gray-900 px-4 ">
+          Furever Home
+        </h1>
+      </Link>
+      <div className="select-none w-full flex flex-col items-center pt-20">
         {pets && currentIndex < pets.length ? (
           <TinderCard
             className={`absolute`}
@@ -74,7 +134,7 @@ const PetSwiper = () => {
             }}
           >
             <motion.div
-              className="shadow-black-1 shadow-lg w-[58vh] h-[90vh] bg-cover bg-center rounded-[20px]"
+              className="shadow-black-1 shadow-lg w-[58vh] h-[80vh] bg-cover bg-center rounded-[20px]"
               style={{
                 backgroundImage: `url(${pets[currentIndex]['URL Link']})`,
               }}

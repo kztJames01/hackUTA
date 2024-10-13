@@ -1,7 +1,6 @@
-'use client'
 import PetSwiper from '@/components/PetSwiper'
 
-const Home = () => {
+const Home = async () => {
   return (
     <div>
       <PetSwiper />

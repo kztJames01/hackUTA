@@ -59,7 +59,7 @@ const Questions = () => {
             duration: ANIMATION_DURATION,
             delay: currentIndex === index ? ANIMATION_DURATION : 0,
           }}
-          className={`absolute text-center container text-16 font-normal text-gray-600 ${
+          className={`absolute text-center container text-3xl font-normal text-gray-600 ${
             currentIndex === index ? '' : 'pointer-events-none'
           }`}
         >
@@ -90,7 +90,7 @@ const Questions = () => {
             duration: ANIMATION_DURATION,
             delay: currentIndex === index ? ANIMATION_DURATION : 0,
           }}
-          className={`absolute text-center max-w-lg text-16 font-normal text-gray-600 ${
+          className={`absolute text-center max-w-3xl text-xl font-normal text-gray-600 ${
             currentIndex === index ? '' : 'pointer-events-none'
           }`}
         >
