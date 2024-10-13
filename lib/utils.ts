@@ -4,7 +4,10 @@ import { z } from "zod"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
-
+export const contact= z.object({
+    email: z.string().email('Invalid email'),
+    message: z.string().max(5000, 'Message is too long'),
+})
 
 export const authFormSchema = (type:string) => z.object({
     firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3, 'First Name is required'),

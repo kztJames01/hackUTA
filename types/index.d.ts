@@ -44,3 +44,4 @@ declare type NewUserParams = {
 declare interface getUserInfoProps {
     userId: string;
 }
+
