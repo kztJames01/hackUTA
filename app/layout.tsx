@@ -1,7 +1,7 @@
-
+import React from "react";
 export const dynamic = 'force-dynamic'
 import type { Metadata } from "next";
-import { Inter, Roboto } from 'next/font/google';
+import { Inter, Roboto, Dancing_Script  } from 'next/font/google';
 import "./globals.css";
 
 const inter = Inter({
@@ -14,10 +14,14 @@ const robo = Roboto({
   style: ['normal', 'italic'],
   variable: '--font-robo',
 })
-
+const dancing = Dancing_Script({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-dancing',
+})
 export const metadata: Metadata = {
-  title: "Adopt Me",
-  description: "NxtGen is a simple, easy-to-use modernized banking platform for small businesses.",
+  title: "Furever Home",
+  description: "Furever Home is a platform where you can adopt pets",
   icons: {
     icon: '/icons/logo.svg'
   }
@@ -30,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${robo.variable}`}>
+      <body className={`${inter.className} ${dancing.variable} ${robo.variable}`}>
         {children}
       </body>
     </html>

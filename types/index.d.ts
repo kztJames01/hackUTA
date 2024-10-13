@@ -45,3 +45,24 @@ declare interface getUserInfoProps {
     userId: string;
 }
 
+declare interface PageWrapperProps {
+    children: React.ReactNode;
+}
+
+declare interface PetProps{
+    breed: string;
+    url: string;
+    sex: string;
+ 
+}
+declare interface RightSidebarProps {
+    user: User | null;
+    pets: PetProps[];
+}
+
+declare interface HeaderBoxProps {
+    type: string;
+    title: string;
+    subtext: string;
+    user: string;
+}
