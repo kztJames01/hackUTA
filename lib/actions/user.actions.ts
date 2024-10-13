@@ -21,15 +21,16 @@ export const signUp = async ({password, ...userData}: SignUpParams) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'development', // Use secure cookies in production
             maxAge: 60 * 60 * 24, // 1 day
-            path: '/sign-in', // Available throughout the site
+            path: '/', // Available throughout the site
         });
 
         // Return response with cookie set
-        return NextResponse.json(newUser, {
+        return (parseStringify(newUser), {
             headers: {
                 'Set-Cookie': sessionCookie,
             },
         });
+        
     }catch(error){
         console.log(error);
     }
@@ -43,13 +44,14 @@ export const signIn = async ({ email, password }:LoginUser) => {
         // Set cookie with user ID or token
         const sessionCookie = serialize('sessionId', user.uid, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+            secure: process.env.NODE_ENV === 'development', // Use secure cookies in production
             maxAge: 60 * 60 * 24, // 1 day
             path: '/', // Available throughout the site
         });
+        const userData = parseStringify(user);
 
         // Return response with cookie set
-        return NextResponse.json({ uid: user.uid, email: user.email }, {
+        return (parseStringify(userData), {
             headers: {
                 'Set-Cookie': sessionCookie,
             },
@@ -105,7 +107,7 @@ export const getLoggedInUser = async (cookieHeader: string | null) => {
         }
 
         const { db } = await connectToDatabase();
-        const user = await db.collection('user').findOne({ userId: sessionId });
+        const user = await db.collection('user').findOne({ userId:  sessionId});
 
         return user ? parseStringify(user) : null; // Return user data or null if not found
     } catch (error) {

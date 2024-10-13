@@ -16,7 +16,7 @@ import {
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const AuthForm = ({ type }: { type: string }) => {
     const [user, setUser] = useState(null);
@@ -46,14 +46,8 @@ const AuthForm = ({ type }: { type: string }) => {
                     email: data.email,
                     password: data.password,
                 }
-                const newUser = await signUp(userData);
-                if (newUser) {
-                    router.push('/sign-in');
-                } else {
-                    console.log('error');
-                    redirect('/sign-up');
-
-                }
+                await signUp(userData);
+                router.push('/sign-in');
 
             }
             if (type === 'sign-in') {
@@ -65,6 +59,7 @@ const AuthForm = ({ type }: { type: string }) => {
                     const cookieHeader = document.cookie; // Simulating getting cookies on the client-side
                     const loggedInUser = await getLoggedInUser(cookieHeader); // Pass the cookie header
                     setUser(loggedInUser);
+                    router.push('/');
                 }
             }
         }
