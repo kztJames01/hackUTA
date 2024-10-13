@@ -12,10 +12,12 @@ const people = [
   },
 ]
 
-const PetSwiper = () => {
+const PetSwiper = ({ firstName }: { firstName: string }) => {
   return (
     <div className="w-screen overflow-hidden relative h-screen">
-      <div>AdoptMe</div>
+      <div className="absolute top-0 left-0 right-0 z-10 bg-white bg-opacity-80 p-4 text-center">
+        <h1 className="text-2xl font-bold">Welcome, {firstName}!</h1>
+      </div>
       <div className="select-none w-full flex flex-col items-center pt-5">
         {people.map((person) => (
           <TinderCard

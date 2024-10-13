@@ -59,7 +59,7 @@ const AuthForm = ({ type }: { type: string }) => {
                     const cookieHeader = document.cookie; // Simulating getting cookies on the client-side
                     const loggedInUser = await getLoggedInUser(cookieHeader); // Pass the cookie header
                     setUser(loggedInUser);
-                    router.push('/');
+                    router.push('/welcome');
                 }
             }
         }
