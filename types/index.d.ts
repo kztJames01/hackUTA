@@ -45,3 +45,6 @@ declare interface getUserInfoProps {
     userId: string;
 }
 
+declare interface PageWrapperProps {
+    children: React.ReactNode;
+}

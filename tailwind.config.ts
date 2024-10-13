@@ -22,38 +22,14 @@ const config = {
     			fill: {
     				'1': 'rgba(255, 255, 255, 0.10)'
     			},
-    			bankGradient: '#009688',
-    			indigo: {
-    				'500': '#6172F3',
-    				'700': '#3538CD'
+    			green: {
+    				'500': '#E6F0DC',
+    				'700': '#C1E899',
+					'900': '#55883B',
     			},
-    			success: {
-    				'25': '#F6FEF9',
-    				'50': '#ECFDF3',
-    				'100': '#D1FADF',
-    				'600': '#039855',
-    				'700': '#027A48',
-    				'900': '#054F31'
-    			},
-    			pink: {
-    				'25': '#FEF6FB',
-    				'100': '#FCE7F6',
-    				'500': '#EE46BC',
-    				'600': '#DD2590',
-    				'700': '#C11574',
-    				'900': '#851651'
-    			},
-    			blue: {
-    				'25': '#F5FAFF',
-    				'100': '#D1E9FF',
-    				'500': '#2E90FA',
-    				'600': '#1570EF',
-    				'700': '#175CD3',
-    				'900': '#194185'
-    			},
-    			sky: {
-    				'1': '#F3F9FF'
-    			},
+    			brown:{
+					'500': '#9A6735',
+				},
     			black: {
     				'1': '#00214F',
     				'2': '#344054'
@@ -120,7 +96,8 @@ const config = {
     		},
     		fontFamily: {
     			inter: 'var(--font-inter)',
-    			robo: 'var(--font-robo)'
+    			robo: 'var(--font-robo)',
+				dancing: 'var(--font-dancing)',
     		},
     		keyframes: {
     			'accordion-down': {

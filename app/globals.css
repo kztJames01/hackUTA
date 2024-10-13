@@ -47,6 +47,9 @@
 }
 
 @layer utilities {
+    .navbar li a{
+        @apply text-green-900 bg-green-500 hover:bg-brown-500 hover:text-white px-4 py-2.5 rounded-lg;
+    }
   .contact-form{
     @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500 w-full p-3 ;
     margin: 0 auto;
@@ -124,9 +127,6 @@
         @apply flex flex-col justify-between gap-8;
     }
 
-
-    
-
     .view-all-btn {
         @apply text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700;
     }
@@ -180,15 +180,6 @@
         @apply text-14 lg:text-16 font-normal text-gray-600;
     }
 
-   
-
-    
-
-    /* Category Badge */
-    .category-badge {
-        @apply flex-center truncate w-fit gap-1 rounded-2xl border-[1.5px] py-[2px] pl-1.5 pr-2;
-    }
-
 
     /* Mobile nav */
     .mobilenav-sheet {
@@ -205,7 +196,7 @@
 
     /* Auth */
     .auth-asset {
-        @apply flex h-screen w-full sticky top-0 items-center justify-end bg-sky-1 max-lg:hidden;
+        @apply flex h-screen w-full sticky top-0 items-center justify-end bg-green-500 max-lg:hidden;
     }
 
     /* Auth Form */
@@ -226,11 +217,11 @@
     }
 
     .form-btn {
-        @apply text-16 rounded-lg border border-bankGradient bg-bank-gradient font-semibold text-white shadow-form;
+        @apply text-16 rounded-lg border border-green-500 px-4 py-2.5 bg-bank-gradient font-semibold text-white shadow-form;
     }
 
     .form-link {
-        @apply text-14 cursor-pointer font-medium text-bankGradient;
+        @apply text-14 cursor-pointer font-medium text-brown-500;
     }
 
     
