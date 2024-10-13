@@ -131,15 +131,17 @@
         @apply text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700;
     }
 
-    
 
+    .pets {
+        @apply flex flex-col justify-between gap-8 px-6 py-8;
+    }
     /* Right sidebar */
     .right-sidebar {
         @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important;
     }
 
     .profile-banner {
-        @apply h-[120px] w-full bg-gradient-mesh bg-cover bg-no-repeat;
+        @apply h-[120px] w-full bg-green-500 bg-cover bg-no-repeat;
     }
 
     .profile {
@@ -162,12 +164,10 @@
         @apply text-16 font-normal text-gray-600;
     }
 
-    
-    .nav-button{
-      @apply text-white p-6 mr-6 my-4 rounded-xl text-xl bg-gray-700;
-    }
-   
 
+    .nav-button {
+        @apply text-white p-6 mr-6 my-4 rounded-xl text-xl bg-gray-700;
+    }
     .header-box {
         @apply flex flex-col gap-1;
     }
@@ -189,10 +189,11 @@
     .mobilenav-sheet_close {
         @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
     }
-    .mobilenav-sheet_label{
+
+    .mobilenav-sheet_label {
         @apply flex text-16 font-semibold text-gray-900;
     }
-    
+
 
     /* Auth */
     .auth-asset {
@@ -224,9 +225,9 @@
         @apply text-14 cursor-pointer font-medium text-brown-500;
     }
 
-    
 
-    
+
+
 
     /* Root Layout */
     .root-layout {
@@ -272,6 +273,6 @@
     }
 
     .sidebar-label {
-        @apply text-16  font-semibold text-black-2 max-xl:hidden;
+        @apply text-16 font-semibold text-black-2 max-xl:hidden;
     }
 }

@@ -1,14 +1,21 @@
-
+'use client'
 import React from 'react'
 import Image from 'next/image'
-import ContactForm from '@/components/ContactForm'
-import { Button } from '@/components/ui/button'
+import ContactForm from '../../components/ContactForm'
+import { Button } from '../../components/ui/button'
 
-import { PageWrapper } from '@/components/PageWrapper'
-import { Navbar } from '@/components/Navbar'
-
+import { PageWrapper } from '../../components/PageWrapper'
+import { Navbar } from '../../components/Navbar'
+import { useRef } from 'react'
 
 const Home = () => {
+
+    const featuredPetsRef = useRef<HTMLDivElement>(null);
+    const scrollToFeaturedPets = () => {
+        if (featuredPetsRef.current) {
+            featuredPetsRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
     return (
 
 
@@ -18,15 +25,13 @@ const Home = () => {
                     <Navbar />
                     <header className="flex justify-center items-center relative min-h-screen w-full bg-green-100">
                         <div className='text-center'>
-                            <h1 className='text-6xl font-bold text-green-700 mb-6 font-dancing'>Adopt Me</h1>
+                            <h1 className='text-6xl font-bold text-green-700 mb-6 font-dancing'>Furever Home</h1>
                             <p className='text-xl text-green-600 mb-8'>Find your perfect furry companion today!</p>
-                            <Button className='bg-brown-500 hover:bg-green-900 py-3 px-6 text-white rounded-xl'>
+                            <Button onClick={scrollToFeaturedPets} className='bg-brown-500 hover:bg-green-900 py-3 px-6 text-white rounded-xl'>
                                 View Available Pets
                             </Button>
                         </div>
-                        <Button className='absolute bottom-20 right-20 rounded-full bg-brown-500 hover:bg-green-900 p-3'>
-                            <Image src="/icons/arrow-down.svg" width={20} height={20} alt="Scroll down" />
-                        </Button>
+                    
                     </header>
 
                     <section className='px-6 py-16 bg-white'>
@@ -34,17 +39,17 @@ const Home = () => {
                             <h2 className='text-4xl font-bold text-green-700 mb-8 text-center'>Why Adopt?</h2>
                             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
                                 <div className='text-center'>
-                                    <Image src="/icons/heart.svg" width={64} height={64} alt="Love" className='mx-auto mb-4' />
+                                <Image src="/pet1.jpg" width={64} height={64} alt="Paw" className='object-cover w-[250px] rounded-xl mx-auto mb-4' />
                                     <h3 className='text-2xl font-semibold mb-2'>Save a Life</h3>
                                     <p>Give a loving home to an animal in need.</p>
                                 </div>
                                 <div className='text-center'>
-                                    <Image src="/icons/paw.svg" width={64} height={64} alt="Paw" className='mx-auto mb-4' />
+                                    <Image src="/pet2.jpg" width={64} height={64} alt="Paw" className='object-cover w-[250px] rounded-xl mx-auto mb-4' />
                                     <h3 className='text-2xl font-semibold mb-2'>Loyal Companion</h3>
                                     <p>Gain a faithful friend for life.</p>
                                 </div>
                                 <div className='text-center'>
-                                    <Image src="/icons/home.svg" width={64} height={64} alt="Home" className='mx-auto mb-4' />
+                                    <Image src="/pet3.jpg" width={64} height={64} alt="Paw" className='object-cover w-[250px] rounded-xl mx-auto mb-4' />
                                     <h3 className='text-2xl font-semibold mb-2'>Enrich Your Life</h3>
                                     <p>Experience the joy of pet ownership.</p>
                                 </div>
@@ -52,13 +57,13 @@ const Home = () => {
                         </div>
                     </section>
 
-                    <section className='px-6 py-16 bg-green-50'>
+                    <section ref={featuredPetsRef} className='px-6 py-16 bg-green-50'>
                         <div className='max-w-6xl mx-auto'>
                             <h2 className='text-4xl font-bold text-green-700 mb-8 text-center'>Featured Pets</h2>
                             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
                                 {[1, 2, 3].map((i) => (
                                     <div key={i} className='bg-white rounded-lg shadow-md overflow-hidden'>
-                                        <Image src={`/pets/pet${i}.jpg`} width={500} height={300} alt={`Pet ${i}`} className='w-full h-48 object-cover' />
+                                        <Image src={`/pet${i}.jpg`} width={500} height={300} alt={`Pet ${i}`} className='w-full h-48 object-cover' />
                                         <div className='p-4'>
                                             <h3 className='text-xl font-semibold mb-2'>Pet Name {i}</h3>
                                             <p className='text-gray-600 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -100,11 +105,15 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className='mt-8 text-center'>
-                                <p>© {new Date().getFullYear()} Adopt Me. All rights reserved.</p>
+                                <p>© {new Date().getFullYear()} Furever Home. All rights reserved.</p>
                             </div>
                         </div>
                     </footer>
+
+
+
                 </div>
+
             </PageWrapper>
         </>
 

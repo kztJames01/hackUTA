@@ -1,6 +1,6 @@
 'use client'
-import { Navbar } from "@/components/Navbar";
-import Image from "next/image";
+import React from 'react'
+
 export const dynamic = 'force-dynamic'
 export default async function RootLayout({
     children,
@@ -12,6 +12,7 @@ export default async function RootLayout({
         <main className="flex h-screen w-full font-inter">
             
             <div className="flex size-full flex-col">
+                
                 
                 {children}
             </div>

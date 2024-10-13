@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
 const welcomeMessage = [
-  { type: 'text', data: 'Welcome to AdoptME' },
+  { type: 'text', data: 'Welcome to Furever Home' },
   {
     type: 'text',
     data: 'Before we get started, we need to ask you a few questions',
@@ -63,7 +63,19 @@ const Questions = () => {
             currentIndex === index ? '' : 'pointer-events-none'
           }`}
         >
-          {message.data}
+          {typeof message.data === 'string' ? (
+            <p>{message.data}</p>
+          ) : (
+            // Handle the object case here, for example:
+            <div>
+              <p>{message.data.question}</p>
+              <ul>
+                {message.data.options.map((option, index) => (
+                  <li key={index}>{option}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </motion.div>
       )
     }

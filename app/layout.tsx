@@ -1,4 +1,4 @@
-
+import React from "react";
 export const dynamic = 'force-dynamic'
 import type { Metadata } from "next";
 import { Inter, Roboto, Dancing_Script  } from 'next/font/google';
@@ -20,8 +20,8 @@ const dancing = Dancing_Script({
   variable: '--font-dancing',
 })
 export const metadata: Metadata = {
-  title: "Adopt Me",
-  description: "NxtGen is a simple, easy-to-use modernized banking platform for small businesses.",
+  title: "Furever Home",
+  description: "Furever Home is a platform where you can adopt pets",
   icons: {
     icon: '/icons/logo.svg'
   }

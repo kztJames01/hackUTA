@@ -79,7 +79,7 @@ const AuthForm = ({ type }: { type: string }) => {
             className="size=[24px] max-xl:size-14"
           />
           <h1 className=" font-bold text-26 font-robo text-gray-900 px-4 ">
-            Adopt Me
+            Furever Home
           </h1>
         </Link>
         <div className="flex flex-col gap-1 md:gap-3 ">

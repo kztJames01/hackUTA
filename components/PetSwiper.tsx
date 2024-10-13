@@ -5,7 +5,7 @@ import TinderCard from 'react-tinder-card'
 import { motion } from 'framer-motion'
 import { BeatLoader } from 'react-spinners'
 
-const swipedRight = []
+const swipedRight: { [key: string]: string }[] = []
 const PetSwiper = () => {
   const [pets, setPets] = React.useState<{ [key: string]: string }[]>()
   const [currentIndex, setCurrentIndex] = React.useState(0)
