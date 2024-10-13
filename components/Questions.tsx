@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
 const welcomeMessage = [
-  { type: 'text', data: 'Welcome to AdoptME' },
+  { type: 'text', data: 'Welcome to Furever Home' },
   {
     type: 'text',
     data: 'Before we get started, we need to ask you a few questions',
