@@ -2,29 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 142 20% 96%;
+    --secondary-foreground: 142 30% 20%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 142 20% 94%;
+    --accent-foreground: 142 30% 20%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 142 71% 45%;
+    --radius: 0.75rem;
+  }
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
-    /* Firefox */
 }
 
 .glassmorphism {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -34,87 +56,43 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #dddddd;
+    background: #f1f5f9;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #5c5c7b;
+    background: #94a3b8;
     border-radius: 50px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #7878a3;
+    background: #64748b;
 }
 
 @layer utilities {
-    .navbar li a{
-        @apply text-green-900 bg-green-500 hover:bg-brown-500 hover:text-white px-4 py-2.5 rounded-lg;
+    .contact-form {
+        @apply text-base rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder:text-slate-400 w-full p-3 focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-all;
     }
-  .contact-form{
-    @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500 w-full p-3 ;
-    margin: 0 auto;
-  }
+
     .input-class {
-        @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
-    }
-
-    .sheet-content button {
-        @apply focus:ring-0 focus-visible:ring-transparent focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:border-none !important;
-    }
-
-    .text14_padding10 {
-        @apply text-14 px-4 py-2.5 font-semibold;
+        @apply text-base rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-all;
     }
 
     .flex-center {
         @apply flex items-center justify-center;
     }
 
-    .header-2 {
-        @apply text-18 font-semibold text-gray-900;
-    }
+    .text-10 { @apply text-[10px] leading-[14px]; }
+    .text-12 { @apply text-[12px] leading-[16px]; }
+    .text-14 { @apply text-[14px] leading-[20px]; }
+    .text-16 { @apply text-[16px] leading-[24px]; }
+    .text-18 { @apply text-[18px] leading-[22px]; }
+    .text-20 { @apply text-[20px] leading-[24px]; }
+    .text-24 { @apply text-[24px] leading-[30px]; }
+    .text-26 { @apply text-[26px] leading-[32px]; }
+    .text-30 { @apply text-[30px] leading-[38px]; }
+    .text-36 { @apply text-[36px] leading-[44px]; }
 
-    .text-10 {
-        @apply text-[10px] leading-[14px];
-    }
-
-    .text-12 {
-        @apply text-[12px] leading-[16px];
-    }
-
-    .text-14 {
-        @apply text-[14px] leading-[20px];
-    }
-
-    .text-16 {
-        @apply text-[16px] leading-[24px];
-    }
-
-    .text-18 {
-        @apply text-[18px] leading-[22px];
-    }
-
-    .text-20 {
-        @apply text-[20px] leading-[24px];
-    }
-
-    .text-24 {
-        @apply text-[24px] leading-[30px];
-    }
-
-    .text-26 {
-        @apply text-[26px] leading-[32px];
-    }
-
-    .text-30 {
-        @apply text-[30px] leading-[38px];
-    }
-
-    .text-36 {
-        @apply text-[36px] leading-[44px];
-    }
-
-    /* Home */
+    /* home */
     .home {
         @apply no-scrollbar flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll;
     }
@@ -128,20 +106,20 @@
     }
 
     .view-all-btn {
-        @apply text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700;
+        @apply text-14 rounded-xl border border-slate-200 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50 transition-colors;
     }
-
 
     .pets {
         @apply flex flex-col justify-between gap-8 px-6 py-8;
     }
-    /* Right sidebar */
+
+    /* right sidebar */
     .right-sidebar {
-        @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important;
+        @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-slate-100 xl:flex w-[355px] xl:overflow-y-scroll !important;
     }
 
     .profile-banner {
-        @apply h-[120px] w-full bg-green-500 bg-cover bg-no-repeat;
+        @apply h-[120px] w-full bg-gradient-to-r from-green-700 to-green-600 bg-cover bg-no-repeat;
     }
 
     .profile {
@@ -149,7 +127,7 @@
     }
 
     .profile-img {
-        @apply flex-center absolute -top-8 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;
+        @apply flex-center absolute -top-8 size-24 rounded-full bg-white border-4 border-white p-2 shadow-profile;
     }
 
     .profile-details {
@@ -157,52 +135,37 @@
     }
 
     .profile-name {
-        @apply text-24 font-semibold text-gray-900;
+        @apply text-24 font-semibold text-slate-900;
     }
 
     .profile-email {
-        @apply text-16 font-normal text-gray-600;
+        @apply text-16 font-normal text-slate-500;
     }
 
-
-    .nav-button {
-        @apply text-white p-6 mr-6 my-4 rounded-xl text-xl bg-gray-700;
-    }
     .header-box {
         @apply flex flex-col gap-1;
     }
 
     .header-box-title {
-        @apply text-24 lg:text-30 font-semibold text-gray-900;
+        @apply text-24 lg:text-30 font-semibold text-slate-900;
     }
 
     .header-box-subtext {
-        @apply text-14 lg:text-16 font-normal text-gray-600;
+        @apply text-14 lg:text-16 font-normal text-slate-500;
     }
 
-
-    /* Mobile nav */
-    .mobilenav-sheet {
-        @apply flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto;
+    .header-2 {
+        @apply text-18 font-semibold text-slate-900;
     }
 
-    .mobilenav-sheet_close {
-        @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
-    }
-
-    .mobilenav-sheet_label {
-        @apply flex text-16 font-semibold text-gray-900;
-    }
-
-
-    /* Auth */
+    /* auth */
     .auth-asset {
-        @apply flex h-screen w-full sticky top-0 items-center justify-end bg-green-500 max-lg:hidden;
+        @apply flex h-screen w-full sticky top-0 items-center justify-center bg-hero-gradient max-lg:hidden overflow-hidden;
     }
 
-    /* Auth Form */
+    /* auth form */
     .auth-form {
-        @apply flex min-h-screen w-full max-w-[420px] flex-col justify-center gap-5 py-10 md:gap-8;
+        @apply flex min-h-screen w-full max-w-[440px] flex-col justify-center gap-5 py-10 md:gap-8 px-8;
     }
 
     .form-item {
@@ -210,7 +173,7 @@
     }
 
     .form-label {
-        @apply text-14 w-full max-w-[280px] font-medium text-gray-700;
+        @apply text-14 font-medium text-slate-700;
     }
 
     .form-message {
@@ -218,61 +181,64 @@
     }
 
     .form-btn {
-        @apply text-16 rounded-lg border border-green-500 px-4 py-2.5 bg-bank-gradient font-semibold text-white shadow-form;
+        @apply text-16 rounded-xl border-0 px-4 py-3 bg-bank-gradient font-semibold text-white shadow-sm hover:opacity-90 transition-opacity;
     }
 
     .form-link {
-        @apply text-14 cursor-pointer font-medium text-brown-500;
+        @apply text-14 cursor-pointer font-semibold text-green-700 hover:text-green-900 transition-colors;
     }
 
-
-
-
-
-    /* Root Layout */
+    /* root layout */
     .root-layout {
-        @apply flex h-16 items-center justify-between p-5 shadow-creditCard sm:p-8 md:hidden;
+        @apply flex h-16 items-center justify-between p-5 shadow-sm sm:p-8 md:hidden;
     }
 
-    /* Footer */
+    /* sidebar */
+    .sidebar {
+        @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-slate-100 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+    }
+
+    .sidebar-logo {
+        @apply 2xl:text-26 font-robo text-[26px] font-bold text-slate-900 max-xl:hidden;
+    }
+
+    .sidebar-link {
+        @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-xl justify-center xl:justify-start;
+    }
+
+    .sidebar-label {
+        @apply text-16 font-semibold text-slate-700 max-xl:hidden;
+    }
+
+    .text-bankGradient {
+        @apply bg-bank-gradient bg-clip-text text-transparent;
+    }
+
+    .mobilenav-sheet {
+        @apply flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto;
+    }
+
+    .mobilenav-sheet_close {
+        @apply flex gap-3 items-center p-4 rounded-xl w-full max-w-60;
+    }
+
+    .mobilenav-sheet_label {
+        @apply flex text-16 font-semibold text-slate-900;
+    }
+
     .footer {
         @apply flex cursor-pointer items-center justify-between gap-4 py-6;
     }
 
     .footer_name {
-        @apply flex size-10 px-3.5 items-center justify-center rounded-full bg-gray-200 max-xl:hidden;
+        @apply flex size-10 px-3.5 items-center justify-center rounded-full bg-slate-100 max-xl:hidden;
     }
 
     .footer_email {
         @apply flex flex-1 flex-col justify-center max-xl:hidden;
     }
 
-    .footer_name-mobile {
-        @apply flex size-10 px-3.5 items-center justify-center rounded-full bg-gray-200;
-    }
-
-    .footer_email-mobile {
-        @apply flex flex-1 flex-col justify-center;
-    }
-
-    .footer_image {
-        @apply relative size-5 max-xl:w-full max-xl:flex max-xl:justify-center max-xl:items-center;
-    }
-
-    /* Sidebar */
-    .sidebar {
-        @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-200 bg-white pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
-    }
-
-    .sidebar-logo {
-        @apply 2xl:text-26 font-robo text-[26px] font-bold text-black-1 max-xl:hidden;
-    }
-
-    .sidebar-link {
-        @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start;
-    }
-
-    .sidebar-label {
-        @apply text-16 font-semibold text-black-2 max-xl:hidden;
+    .sheet-content button {
+        @apply focus:ring-0 focus-visible:ring-transparent focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:border-none !important;
     }
 }

@@ -9,7 +9,6 @@ import CustomInput from '@/components/CustomInput'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
-
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
@@ -52,8 +51,8 @@ const AuthForm = ({ type }: { type: string }) => {
           password: data.password,
         })
         if (response) {
-          const cookieHeader = document.cookie // Simulating getting cookies on the client-side
-          const loggedInUser = await getLoggedInUser(cookieHeader) // Pass the cookie header
+          const cookieHeader = document.cookie
+          const loggedInUser = await getLoggedInUser(cookieHeader)
           setUser(loggedInUser)
           router.push('/welcome')
         }
@@ -64,127 +63,67 @@ const AuthForm = ({ type }: { type: string }) => {
       setLoading(false)
     }
   }
+
   return (
     <section className="auth-form">
-      <header className="flex flex-col gap-5 md:gap-8">
-        <Link
-          href="/"
-          className="flex mb-12  cursor-pointer items-center gap-2"
-        >
-          <Image
-            src="/icons/logo.svg"
-            width={34}
-            height={34}
-            alt="NxtGen logo"
-            className="size=[24px] max-xl:size-14"
-          />
-          <h1 className=" font-bold text-26 font-robo text-gray-900 px-4 ">
-            Furever Home
-          </h1>
+      <header className="flex flex-col gap-5 md:gap-6">
+        <Link href="/" className="flex items-center gap-2.5 mb-2">
+          <Image src="/icons/logo.svg" width={30} height={30} alt="logo" />
+          <h1 className="font-bold text-xl font-robo text-slate-900">Furever Home</h1>
         </Link>
-        <div className="flex flex-col gap-1 md:gap-3 ">
-          <h1 className="text-24 lg:text-36 font-semibold text-gray-700">
-            {user ? 'Link Account' : type === 'sign-in' ? 'Sign In' : 'Sign Up'}
-            <p className="text-16 font-normal text-gray-600">
-              {user
-                ? 'Link your account to get started'
-                : 'Please enter your details'}
-            </p>
+
+        <div className="flex flex-col gap-1.5">
+          <h1 className="text-2xl font-bold text-slate-900">
+            {type === 'sign-in' ? 'Welcome back' : 'Create an account'}
           </h1>
+          <p className="text-slate-500 text-sm">
+            {type === 'sign-in'
+              ? 'Sign in to continue finding your perfect companion'
+              : 'Join thousands of families who found their perfect pet'}
+          </p>
         </div>
       </header>
 
-      <>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            {type === 'sign-up' && (
-              <>
-                <div className="flex gap-4 ">
-                  <CustomInput
-                    control={form.control}
-                    name="firstName"
-                    label="First Name"
-                    placeholder="Enter your first name"
-                  />
-                  <CustomInput
-                    control={form.control}
-                    name="lastName"
-                    label="Last Name"
-                    placeholder="Enter your last name"
-                  />
-                </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          {type === 'sign-up' && (
+            <>
+              <div className="flex gap-4">
+                <CustomInput control={form.control} name="firstName" label="First Name" placeholder="John" />
+                <CustomInput control={form.control} name="lastName" label="Last Name" placeholder="Doe" />
+              </div>
+              <CustomInput control={form.control} name="city" label="City" placeholder="New York" />
+              <div className="flex gap-4">
+                <CustomInput control={form.control} name="state" label="State" placeholder="TX" />
+                <CustomInput control={form.control} name="postalCode" label="ZIP Code" placeholder="10001" />
+              </div>
+              <CustomInput control={form.control} name="phone" label="Phone" placeholder="(555) 123-4567" />
+            </>
+          )}
 
-                <CustomInput
-                  control={form.control}
-                  name="city"
-                  label="City"
-                  placeholder="Enter your city: New York"
-                />
-                <CustomInput
-                  control={form.control}
-                  name="state"
-                  label="State"
-                  placeholder="Example: TX"
-                />
-                <CustomInput
-                  control={form.control}
-                  name="postalCode"
-                  label="ZipCode"
-                  placeholder="Example: 11010"
-                />
-                <CustomInput
-                  control={form.control}
-                  name="phone"
-                  label="Phone"
-                  placeholder="Example: 123-456-7890"
-                />
-              </>
+          <CustomInput control={form.control} name="email" label="Email" placeholder="you@example.com" />
+          <CustomInput control={form.control} name="password" label="Password" placeholder="••••••••" />
+
+          <Button type="submit" disabled={loading} className="form-btn w-full mt-2">
+            {loading ? (
+              <><Loader2 size={18} className="animate-spin mr-2" />Loading...</>
+            ) : type === 'sign-in' ? (
+              'Sign In'
+            ) : (
+              'Create Account'
             )}
-            <CustomInput
-              control={form.control}
-              name="email"
-              label="Email"
-              placeholder="Enter your email"
-            />
-            <CustomInput
-              control={form.control}
-              name="password"
-              label="Password"
-              placeholder="Enter your password"
-            />
+          </Button>
+        </form>
+      </Form>
 
-            <Button
-              type="submit"
-              disabled={loading}
-              className="form-btn w-full"
-            >
-              {loading ? (
-                <>
-                  <Loader2 size={20} className="animate-spin mr-3" /> &nbsp;
-                  Loading...
-                </>
-              ) : type === 'sign-in' ? (
-                'Sign In'
-              ) : (
-                'Sign Up'
-              )}
-            </Button>
-          </form>
-        </Form>
-        <footer className="flex justify-center gap-1">
-          <p className="text-14 font-normal text-gray-600">
-            {type === 'sign-in'
-              ? 'Don’t have an account?'
-              : 'Already have an account?'}
-          </p>
-          <Link
-            href={type === 'sign-in' ? '/sign-up' : '/sign-in'}
-            className="form-link"
-          >
-            {type === 'sign-in' ? 'Sign Up' : 'Sign In'}
-          </Link>
-        </footer>
-      </>
+      <footer className="flex justify-center gap-1.5 pt-2">
+        <p className="text-sm text-slate-500">
+          {type === 'sign-in' ? "Don't have an account?" : 'Already have an account?'}
+        </p>
+        <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'} className="form-link">
+          {type === 'sign-in' ? 'Sign Up' : 'Sign In'}
+        </Link>
+      </footer>
     </section>
   )
 }

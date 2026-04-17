@@ -23,26 +23,29 @@ const config = {
     				'1': 'rgba(255, 255, 255, 0.10)'
     			},
     			green: {
-    				'500': '#E6F0DC',
-    				'700': '#C1E899',
-					'900': '#55883B',
-					'1000': '#005F3B'
+    				'50':  '#f0fdf4',
+    				'100': '#dcfce7',
+    				'500': '#22c55e',
+    				'600': '#16a34a',
+    				'700': '#15803d',
+    				'900': '#14532d',
+    				'1000': '#052e16'
     			},
-    			brown:{
-					'500': '#9A6735',
-				},
+    			brown: {
+    				'500': '#d97706',
+    			},
     			black: {
-    				'1': '#00214F',
-    				'2': '#344054'
+    				'1': '#0f172a',
+    				'2': '#334155'
     			},
     			gray: {
-    				'25': '#FCFCFD',
-    				'200': '#EAECF0',
-    				'300': '#D0D5DD',
-    				'500': '#667085',
-    				'600': '#475467',
-    				'700': '#344054',
-    				'900': '#101828'
+    				'25':  '#fafafa',
+    				'200': '#e2e8f0',
+    				'300': '#cbd5e1',
+    				'500': '#64748b',
+    				'600': '#475569',
+    				'700': '#334155',
+    				'900': '#0f172a'
     			},
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
@@ -86,8 +89,9 @@ const config = {
     			}
     		},
     		backgroundImage: {
-    			'bank-gradient': 'linear-gradient(45deg, #009688 0%, #4893FF 100%)',
-    			'bank-green-gradient': 'linear-gradient(90deg, #01797A 0%, #489399 100%)'
+    			'bank-gradient': 'linear-gradient(135deg, #15803d 0%, #16a34a 100%)',
+    			'bank-green-gradient': 'linear-gradient(135deg, #052e16 0%, #14532d 60%, #15803d 100%)',
+    			'hero-gradient': 'linear-gradient(135deg, #052e16 0%, #14532d 50%, #166534 100%)',
     		},
     		boxShadow: {
     			form: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
