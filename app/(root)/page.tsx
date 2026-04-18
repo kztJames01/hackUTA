@@ -67,9 +67,9 @@ const Home = () => {
             {/* stats row */}
             <div className="relative z-10 mt-20 flex flex-wrap justify-center gap-12 text-center">
               {[
-                { num: '500+', label: 'Pets Available' },
-                { num: '2,000+', label: 'Successful Adoptions' },
-                { num: '50+', label: 'Shelter Partners' },
+                { num: 'Coming Soon', label: 'Pets Available' },
+                { num: 'Coming Soon', label: 'Successful Adoptions' },
+                { num: 'Coming Soon', label: 'Shelter Partners' },
               ].map((s) => (
                 <div key={s.label}>
                   <div className="text-3xl font-bold text-white">{s.num}</div>

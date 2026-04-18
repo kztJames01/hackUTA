@@ -8,41 +8,92 @@ from flask_cors import CORS
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+try:
+    import redis as redis_lib
+except ImportError:
+    redis_lib = None
+
+# redis key for pickled (None, petsInfo_df) — TTL handles expiry
+REDIS_CACHE_KEY = os.getenv("REDIS_PETS_CACHE_KEY", "recommendation:pets_info:v1")
+CACHE_EXPIRY = int(os.getenv("CACHE_EXPIRY_SECONDS", str(2 * 60 * 60)))
+
+
+def _get_redis_client():
+    if redis_lib is None:
+        return None
+    url = os.getenv("REDIS_URL", "").strip()
+    if url:
+        return redis_lib.from_url(url, decode_responses=False)
+    host = os.getenv("REDIS_HOST", "").strip()
+    if not host:
+        return None
+    port = int(os.getenv("REDIS_PORT", "6379"))
+    db = int(os.getenv("REDIS_DB", "0"))
+    pw = os.getenv("REDIS_PASSWORD") or None
+    return redis_lib.Redis(host=host, port=port, db=db, password=pw, decode_responses=False)
+
 
 def get_pets_info_df():
-    mongo_uri = "mongodb+srv://danjes002:eWzpIgBxbsv40s04@cluster0.avntp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    mongo_uri = os.getenv("MONGODB_URI")
+    cache_file = os.getenv("CACHE_FILE", "").strip()
 
-    CACHE_FILE = "/home/daniel/Projects/hackUTA/recommendation_system/cache.pkl"
-    CACHE_EXPIRY = 2 * 60 * 60  # 2 hours in seconds
+    def load_from_redis(r):
+        try:
+            blob = r.get(REDIS_CACHE_KEY)
+            if blob:
+                return pickle.loads(blob)
+        except Exception as e:
+            print("redis cache read failed:", e)
+        return None
 
-    def load_cache():
-        if os.path.exists(CACHE_FILE):
-            with open(CACHE_FILE, "rb") as f:
+    def save_to_redis(r, payload):
+        try:
+            r.setex(REDIS_CACHE_KEY, CACHE_EXPIRY, pickle.dumps(payload))
+        except Exception as e:
+            print("redis cache write failed:", e)
+
+    def load_from_file():
+        if not cache_file or not os.path.exists(cache_file):
+            return None
+        try:
+            with open(cache_file, "rb") as f:
                 cache = pickle.load(f)
                 if time.time() - cache["timestamp"] < CACHE_EXPIRY:
                     return cache["data"]
+        except Exception as e:
+            print("file cache read failed:", e)
         return None
 
-    def save_cache(data):
-        with open(CACHE_FILE, "wb") as f:
-            cache = {"timestamp": time.time(), "data": data}
-            pickle.dump(cache, f)
+    def save_to_file(data):
+        if not cache_file:
+            return
+        try:
+            with open(cache_file, "wb") as f:
+                pickle.dump({"timestamp": time.time(), "data": data}, f)
+        except Exception as e:
+            print("file cache write failed:", e)
 
-    # Load data from cache if available
-    cached_data = load_cache()
-    if cached_data:
+    cached_data = None
+    r = _get_redis_client()
+    if r is not None:
+        cached_data = load_from_redis(r)
+
+    if cached_data is None:
+        cached_data = load_from_file()
+
+    if cached_data is not None:
         _, petsInfo_df = cached_data
-    else:
-        client = MongoClient(mongo_uri)
-        db = client.get_database("adopt-me")
+        return petsInfo_df
 
-        petsInfo_collection = db.get_collection("petsInfo")
+    client = MongoClient(mongo_uri)
+    db = client.get_database("adopt-me")
+    petsInfo_collection = db.get_collection("petsInfo")
+    petsInfo_df = pd.DataFrame(list(petsInfo_collection.find()))
+    payload = (None, petsInfo_df)
 
-        # Convert MongoDB collection to DataFrame
-        petsInfo_df = pd.DataFrame(list(petsInfo_collection.find()))
-
-        # Save data to cache
-        save_cache((None, petsInfo_df))
+    if r is not None:
+        save_to_redis(r, payload)
+    save_to_file(payload)
 
     return petsInfo_df
 
@@ -84,7 +135,7 @@ def update_recommendations():
 
 
 def update_user_recommendations(userid, pets):
-    mongo_uri = "mongodb+srv://danjes002:eWzpIgBxbsv40s04@cluster0.avntp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    mongo_uri = os.getenv("MONGODB_URI")
     client = MongoClient(mongo_uri)
     db = client.get_database("adopt-me")
     user_recommendations_collection = db.get_collection("userRecommendations")
